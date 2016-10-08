@@ -1,54 +1,40 @@
 import React  from 'react';
+import TopNav from './navbars/TopNav';
+import SideNav from './navbars/SideNav';
 
-var Navbar = React.createClass({
-  componentDidMount(){
-    $(".button-collapse").sideNav();
+var NavBar = React.createClass({
+  getInitialState: function() {
+    return {windowWidth: window.innerWidth};
+  },
+
+  handleResize: function(e) {
+    this.setState({windowWidth: window.innerWidth});
+  },
+
+  componentDidMount: function() {
+    window.addEventListener('resize', this.handleResize);
+  },
+
+  componentWillUnmount: function() {
+    window.removeEventListener('resize', this.handleResize);
+  },
+
+  navForCurrentPageWidth(){
+    if(this.state.windowWidth > 950){
+      return <TopNav setCurrentPage={this.props.setCurrentPage} />;
+    } else {
+      return <SideNav setCurrentPage={this.props.setCurrentPage} />;
+    }
   },
 
   render(){
-    var setCurrentPage = this.props.setCurrentPage;
     return (
-      // <nav>
-      //   <div className="nav-wrapper">
-      //     <a href="#" className="brand-logo">Logo</a>
-      //     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      //     <ul className="right hide-on-med-and-down">
-
-      //     </ul>
-      //     <ul className="side-nav">
-      //       <li><a onClick={setCurrentPage("home")}>ABOUT IVAN</a></li>
-      //       <li><a onClick={setCurrentPage("personalTrainer")}>PERSONAL TRAINING</a></li>
-      //       <li><a onClick={setCurrentPage("massageTrainer")}>MASSAGE THERAPY</a></li>
-      //       <li><a onClick={setCurrentPage("scheduling")}>SCHEDULING</a></li>
-      //       <li><a onClick={setCurrentPage("calendar")}>CALENDAR</a></li>
-      //       <li><a onClick={setCurrentPage("contact")}>CONTACT</a></li>
-      //     </ul>
-      //   </div>
-      // </nav>
-  <nav>
-   <div className="nav-wrapper">
-     <a href="#!" className="brand-logo">Logo</a>
-     <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
-     <ul className="right hide-on-med-and-down">
-       <li><a onClick={setCurrentPage("home")}>ABOUT IVAN</a></li>
-       <li><a onClick={setCurrentPage("personalTrainer")}>PERSONAL TRAINING</a></li>
-       <li><a onClick={setCurrentPage("massageTrainer")}>MASSAGE THERAPY</a></li>
-       <li><a onClick={setCurrentPage("scheduling")}>SCHEDULING</a></li>
-       <li><a onClick={setCurrentPage("calendar")}>CALENDAR</a></li>
-       <li><a onClick={setCurrentPage("contact")}>CONTACT</a></li>
-    </ul>
-     <ul className="side-nav" id="mobile-demo">
-       <li><a onClick={setCurrentPage("home")}>ABOUT IVAN</a></li>
-       <li><a onClick={setCurrentPage("personalTrainer")}>PERSONAL TRAINING</a></li>
-       <li><a onClick={setCurrentPage("massageTrainer")}>MASSAGE THERAPY</a></li>
-       <li><a onClick={setCurrentPage("scheduling")}>SCHEDULING</a></li>
-       <li><a onClick={setCurrentPage("calendar")}>CALENDAR</a></li>
-       <li><a onClick={setCurrentPage("contact")}>CONTACT</a></li>
-     </ul>
-   </div>
- </nav>
+      <div>
+        {this.navForCurrentPageWidth()}
+        <h1>pageWidth: {this.state.windowWidth}</h1>
+      </div>
     );
   }
 });
 
-export default Navbar;
+export default NavBar;

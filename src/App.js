@@ -1,6 +1,6 @@
 import React  from 'react';
 import './App.css';
-import Navbar from './components/Navbar';
+import NavBar from './components/NavBar';
 import Home from './components/pages/Home';
 import PersonalTrainer from './components/pages/PersonalTrainer';
 import MassageTrainer from './components/pages/MassageTrainer';
@@ -43,7 +43,7 @@ const App = React.createClass({
   render() {
     return (
       <div>
-        <Navbar setCurrentPage={this.setCurrentPage}/>
+        <NavBar setCurrentPage={this.setCurrentPage}/>
         {this.getCurrentPage(this.state.currentPage)}
       </div>
     );
