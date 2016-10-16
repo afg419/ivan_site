@@ -20,7 +20,7 @@ var NavBar = React.createClass({
   },
 
   navForCurrentPageWidth(){
-    if(this.state.windowWidth > 950){
+    if(this.state.windowWidth > 1070){
       return <TopNav setCurrentPage={this.props.setCurrentPage} />;
     } else {
       return <SideNav setCurrentPage={this.props.setCurrentPage} />;
@@ -31,7 +31,7 @@ var NavBar = React.createClass({
     return (
       <div>
         {this.navForCurrentPageWidth()}
-        <h1>pageWidth: {this.state.windowWidth}</h1>
+        {/*<h1>pageWidth: {this.state.windowWidth}</h1>*/}
       </div>
     );
   }

@@ -6,38 +6,55 @@ var SideNav = React.createClass({
     return {hamPushed: false};
   },
 
-  handleHamPush(){
+  // handleHamPush(){
+  //   var hamState = this.state.hamPushed;
+  //   this.setState({hamPushed: !hamState});
+  // },
+
+  toggleNav() {
     var hamState = this.state.hamPushed;
     this.setState({hamPushed: !hamState});
-  },
 
-  hamOrSideNav(){
-    var setCurrentPage = this.props.setCurrentPage;
-    if(this.state.hamPushed){
-      return (<ul className="sideNav">
-        <li><a onClick={setCurrentPage("about")}>ABOUT IVAN</a></li>
-        <li><a onClick={setCurrentPage("personalTrainer")}>PERSONAL TRAINING</a></li>
-        <li><a onClick={setCurrentPage("massageTrainer")}>MASSAGE THERAPY</a></li>
-        <li><a onClick={setCurrentPage("scheduling")}>SCHEDULING</a></li>
-        <li><a onClick={setCurrentPage("calendar")}>CALENDAR</a></li>
-        <li><a onClick={setCurrentPage("contact")}>CONTACT</a></li>
-        <li><a id="logo" onClick={setCurrentPage("home")}>LOGO</a></li>
-      </ul>);
+    if(!hamState){
+      document.getElementById("sideNavMenu").style.width = "250px";
     } else {
-      return (<ul className="topNav">
-                <li id="centered-logo"><a>LOGO</a></li>
-                <li><a id="right-side-nav" onClick={this.handleHamPush}>MENU</a></li>
-             </ul>);
+      document.getElementById("sideNavMenu").style.width = "0";
     }
   },
+
+  setCurrentPageAndToggleNav(pageName){
+    return () => {
+      this.props.setCurrentPage(pageName)();
+      this.toggleNav();
+    };
+  },
+
+  sideNav(){
+    var setCurrentPageAndToggleNav = this.setCurrentPageAndToggleNav;
+      return (
+              <div id="sideNavMenu" className="sideNav">
+                <a onClick={setCurrentPageAndToggleNav("about")}>ABOUT IVAN</a>
+                <a onClick={setCurrentPageAndToggleNav("personalTrainer")}>PERSONAL TRAINING</a>
+                <a onClick={setCurrentPageAndToggleNav("massageTrainer")}>MASSAGE THERAPY</a>
+                <a onClick={setCurrentPageAndToggleNav("scheduling")}>SCHEDULING</a>
+                <a onClick={setCurrentPageAndToggleNav("calendar")}>CALENDAR</a>
+                <a onClick={setCurrentPageAndToggleNav("contact")}>CONTACT</a>
+                <a id="logo" onClick={setCurrentPageAndToggleNav("home")}>TRAIN GAIN SUSTAIN</a>
+              </div>
+            );
+    },
 
   render(){
     return (
       <nav id="largeNavbar">
        <div className="nav-wrapper">
-          {this.hamOrSideNav()}
+          <ul className="topNav">
+             <li id="centered-logo"><a>TRAIN GAIN SUSTAIN</a></li>
+             <li><a id="right-side-nav" onClick={this.toggleNav}>MENU</a></li>
+          </ul>
+          {this.sideNav()}
        </div>
-    </nav>
+      </nav>
     );
   }
 });

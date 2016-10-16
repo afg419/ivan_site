@@ -16,6 +16,12 @@ const App = React.createClass({
          };
   },
 
+  divStyle(){
+    return {
+      backgroundImage: `url(${this.state.currentPage}-background.jpg)`
+    } ;
+  },
+
   pages(){
     const {home, about, personalTrainer, massageTrainer, scheduling, calendar, contact} = this.props;
     return {
@@ -42,16 +48,18 @@ const App = React.createClass({
 
   render() {
     return (
-      <div>
+      <div id="full-page" style={this.divStyle()}>
         <NavBar setCurrentPage={this.setCurrentPage}/>
-        {this.getCurrentPage(this.state.currentPage)}
+        <div id="main" >
+          {this.getCurrentPage(this.state.currentPage)}
+        </div>
       </div>
     );
   }
 });
 
 export default App;
-
+//
 // 1. HomePage
 //     1. Header
 //     2. Multiple sentences

@@ -4,7 +4,7 @@ var Home = React.createClass({
   render(){
     return (
       <div>
-        {this.props.content.header}
+        <h1 style={{textAlign: "center", color: "white"}}>{this.props.content.header}</h1>
       </div>
     );
   }

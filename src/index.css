@@ -1,15 +1,42 @@
+html{
+  /*overflow: hidden;*/
+  height: 100%;
+}
+
 body {
+
+  height: 100%;
+    /*overflow: auto;*/
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Quattrocento', serif;
+}
+
+#full-page{
+  min-height: 720px;
+  background-size: cover;
+}
+
+#main {
+    height: 100%;
+    transition: margin-left .5s;
+    padding: 20px;
 }
 
 ul.topNav {
     list-style-type: none;
+    position:relative;
     margin: 0;
     padding: 0;
+    background-color: rgba(255,255,255,0.15);
+    /*border-style:solid;
+    border-left: rgba(0,0,0,0);
+    border-color: rgba(200,0,0,0);
+    border-top: rgba(0,0,0,0);
+    border-right: rgba(0,0,0,0);*/
+    /*border-bottom: black;*/
     overflow: hidden;
-    background-color: #333;
+    /*background-color: r;*/
 }
 
 #right-side-nav {
@@ -35,5 +62,38 @@ ul.topNav li a {
 }
 
 ul.topNav li a:hover {
-    background-color: #111;
+    /*background-color: #111;*/
+    color: #4e575c;
+}
+
+.sideNav {
+    height: 922px; /* 100% Full-height */
+    min-height: 100%;
+    width: 0; /* 0 width - change this with JavaScript */
+    position: absolute; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.15);; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 30px; /* Place content 60px from the top */
+    transition: 0.2s;
+    white-space:nowrap;
+    /*border-style: solid;
+    border-bottom: rgba(0,0,0,0);
+    border-top: rgba(0,0,0,0);
+    border-left: black;*/
+ /* 0.5 second transition effect to slide in the sidenav */
+}
+
+.sideNav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 15px;
+    color: white;
+    display: block;
+    transition: 0.3s
+}
+
+.sideNav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
 }

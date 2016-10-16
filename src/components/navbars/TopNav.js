@@ -14,7 +14,7 @@ var TopNav = React.createClass({
            <li><a onClick={setCurrentPage("scheduling")}>SCHEDULING</a></li>
            <li><a onClick={setCurrentPage("calendar")}>CALENDAR</a></li>
            <li><a onClick={setCurrentPage("contact")}>CONTACT</a></li>
-           <li><a id="right-side-nav" onClick={setCurrentPage("home")}>LOGO</a></li>
+           <li><a id="right-side-nav" onClick={setCurrentPage("home")}>TRAIN GAIN SUSTAIN</a></li>
         </ul>
      </div>
     </nav>
