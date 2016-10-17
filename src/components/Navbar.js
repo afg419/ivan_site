@@ -1,38 +1,52 @@
 import React  from 'react';
-import TopNav from './navbars/TopNav';
-import SideNav from './navbars/SideNav';
 
 var NavBar = React.createClass({
-  getInitialState: function() {
-    return {windowWidth: window.innerWidth};
+  getInitialState(){
+    return {hamPushed: false};
   },
 
-  handleResize: function(e) {
-    this.setState({windowWidth: window.innerWidth});
-  },
+  toggleNav() {
+    var hamState = this.state.hamPushed;
+    this.setState({hamPushed: !hamState});
 
-  componentDidMount: function() {
-    window.addEventListener('resize', this.handleResize);
-  },
-
-  componentWillUnmount: function() {
-    window.removeEventListener('resize', this.handleResize);
-  },
-
-  navForCurrentPageWidth(){
-    if(this.state.windowWidth > 1070){
-      return <TopNav setCurrentPage={this.props.setCurrentPage} />;
+    if(!hamState){
+      document.getElementById("sideNavMenu").style.width = "300px";
     } else {
-      return <SideNav setCurrentPage={this.props.setCurrentPage} />;
+      document.getElementById("sideNavMenu").style.width = "0";
     }
   },
 
+  setCurrentPageAndToggleNav(pageName){
+    return () => {
+      this.props.setCurrentPage(pageName)();
+      this.toggleNav();
+    };
+  },
+
+  sideNav(){
+    var setCurrentPageAndToggleNav = this.setCurrentPageAndToggleNav;
+      return (
+              <div id="sideNavMenu" className="sideNav">
+                <a onClick={setCurrentPageAndToggleNav("about")}>ABOUT IVAN</a>
+                <a onClick={setCurrentPageAndToggleNav("personalTrainer")}>PERSONAL TRAINING</a>
+                <a onClick={setCurrentPageAndToggleNav("massageTrainer")}>MASSAGE THERAPY</a>
+                <a onClick={setCurrentPageAndToggleNav("scheduling")}>SCHEDULING</a>
+                <a onClick={setCurrentPageAndToggleNav("calendar")}>CALENDAR</a>
+                <a onClick={setCurrentPageAndToggleNav("contact")}>CONTACT</a>
+                <a id="logo" onClick={setCurrentPageAndToggleNav("home")}>TRAIN GAIN SUSTAIN</a>
+              </div>
+            );
+    },
+
   render(){
     return (
-      <div>
-        {this.navForCurrentPageWidth()}
-        {/*<h1>pageWidth: {this.state.windowWidth}</h1>*/}
-      </div>
+      <nav id="largeNavbar">
+          <ul className="topNav">
+             <li id="centered-logo"><a onClick={this.props.setCurrentPage("home")}> TRAIN GAIN SUSTAIN</a></li>
+             <li><a id="right-side-nav" onClick={this.toggleNav}>MENU</a></li>
+          </ul>
+          {this.sideNav()}
+      </nav>
     );
   }
 });

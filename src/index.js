@@ -5,7 +5,7 @@ import './index.css';
 
 ReactDOM.render(
   <App        about={{header: "ABOUT"}}
-               home={{header: "HOME"}}
+               home={{header: "TRAIN GAIN SUSTAIN"}}
     personalTrainer={{header: "PERSONALTRAINER"}}
      massageTrainer={{header: "MASSAGETRAINER"}}
             contact={{header: "CONTACT"}}
