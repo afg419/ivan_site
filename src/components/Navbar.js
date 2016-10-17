@@ -42,7 +42,7 @@ var NavBar = React.createClass({
     return (
       <nav id="largeNavbar">
           <ul className="topNav">
-             <li id="centered-logo"><a onClick={this.props.setCurrentPage("home")}> TRAIN GAIN SUSTAIN</a></li>
+             <li id="centered-logo"><a onClick={this.props.setCurrentPage("home")}>Train/Gain/Sustain</a></li>
              <li><a id="right-side-nav" onClick={this.toggleNav}>MENU</a></li>
           </ul>
           {this.sideNav()}
